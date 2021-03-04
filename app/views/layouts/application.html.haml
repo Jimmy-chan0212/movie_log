@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    / Favicons
+    %link{:href => "assets/img/favicon.png", :rel => "icon"}/
+    %link{:href => "assets/img/apple-touch-icon.png", :rel => "apple-touch-icon"}/
+    / Google Fonts
+    %link{:href => "https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i", :rel => "stylesheet"}/
+    %title MovieLog
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+  %body
+    = render 'header'
+    -if notice.present?
+      .container
+        %p.notice.alert.alert-success{:role => "alert"}
+          =notice
+    -if alert.present?
+      .container
+        %p.alert.alert-danger{:role => "alert"}
+          =alert
+    = yield
+    = render 'footer'
+    = javascript_include_tag "application"

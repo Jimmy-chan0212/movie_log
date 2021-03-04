@@ -1,0 +1,41 @@
+#main-navbar.collapse.navbar-collapse.custom-navmenu
+  .container.py-2.py-md-5
+    .row.align-items-start
+      .col-md-2
+        %ul.custom-menu
+          %li
+            =link_to "director", directors_path
+          %li
+            =link_to "work", works_path
+          -if user_signed_in?
+            %li
+              =link_to 'profile', edit_user_path(current_user)
+            %li
+              = link_to 'Logout', destroy_user_session_path
+          -else
+            %li
+              = link_to 'Sign Up', new_user_registration_path
+            %li
+              = link_to 'Login', new_user_session_path
+      .col-md-6.d-none.d-md-block.mr-auto
+        .tweet.d-flex
+          %span.icofont-twitter.text-white.mt-2.mr-3
+          %div
+            %p
+              %em
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiis explicabo inventore.
+                %br/
+                %a{:href => "#"} t.co/v82jsk
+      .col-md-4.d-none.d-md-block
+        %h3 Hire Me
+        %p
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiisexplicabo inventore.
+          %br/
+          %a{:href => "#"} myemail@gmail.com
+%nav.navbar.navbar-light.custom-navbar
+  .container
+    -# %a.navbar-brand{:href => "index.html"} Movie Log.
+    =link_to "Movie log", works_path, class: 'navbar-brand'
+    %a.burger{"data-target" => "#main-navbar", "data-toggle" => "collapse", :href => "#"}
+      %span
+%main#main

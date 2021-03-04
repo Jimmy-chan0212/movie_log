@@ -1,0 +1,34 @@
+-# -# %h1 director index
+-# - @directors.each do |director|
+-#   = link_to director.name, director_path(director)
+-#   %br
+-# = link_to "新規登録", new_director_path
+-# %br
+-# = link_to "映画一覧", works_path
+
+/ ======= Works Section =======
+%section.section.site-portfolio
+  .container
+    .row.mb-5.align-items-center
+      .col-md-12.col-lg-6.mb-4.mb-lg-0{"data-aos" => "fade-up"}
+        %h2 Director Index
+        %p.mb-0 Director's Discription
+    #portfolio-grid.row.no-gutter{"data-aos" => "fade-up", "data-aos-delay" => "200"}
+      -@directors.each do |director|
+        .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
+          =link_to director_path(director), class: 'item-wrap fancybox' do
+            .work-info
+              %h3=director.name
+              %span=director.country
+            -# =image_tag director.image_url, class: 'img-fluid'
+            -if director.image.present?
+              =image_tag director.image_url(:thumb), class: 'img-fulid'
+            -else
+              =image_tag '/img/default_image_thumb.png', class: 'img-fulid'
+    =paginate @directors
+    = search_form_for @q do |f|
+      = f.label :title, "Keyword"
+      = f.search_field :name_or_works_title_cont
+      = f.submit "検索"
+    -if user_signed_in?
+      =link_to "new", new_director_path, class: 'readmore mt-3'

@@ -1,0 +1,14 @@
+.container.mt-5.mb-5
+  %h2 my profile
+
+  = "nick_name: #{@user.nick_name}"
+  %br
+  = "adress: #{@user.address}"
+  %br
+  = "birth_day: #{@user.birth_day}"
+  %br
+  = "description: #{@user.description}"
+  %br
+  = image_tag @user.image_url, class: 'img-fluid'
+  %br
+  =link_to 'edit', edit_user_path(@user)

@@ -1,0 +1,25 @@
+%section.section.site-portfolio
+  .container
+    .row.mb-5.align-items-center
+      .col-md-12.col-lg-6.mb-4.mb-lg-0{"data-aos" => "fade-up"}
+        %h2 Movie Index
+        %p.mb-0 Movie's Discription
+    #portfolio-grid.row.no-gutter{"data-aos" => "fade-up", "data-aos-delay" => "200"}
+      -@works.each do |work|
+        .item.web.col-sm-6.col-md-4.col-lg-4.mb-4
+          =link_to work_path(work), class: 'item-wrap fancybox' do
+            .work-info
+              %h3=work.title
+              %span=work.director.name
+            -# %img.img-fluid{:src => "/img/img_1.jpg"}/
+            -if work.image.present?
+              =image_tag work.image_url(:thumb), class: 'img-fulid'
+            -else
+              =image_tag '/img/default_image_thumb.png', class: 'img-fulid'
+    =paginate @works
+    = search_form_for @q do |f|
+      = f.label :title, "Keyword"
+      = f.search_field :title_or_director_name_cont
+      = f.submit "検索"
+    -if user_signed_in?
+      =link_to "new", new_work_path, class: 'readmore mt-3'
