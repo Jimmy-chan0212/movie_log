@@ -33,6 +33,8 @@ gem 'mini_magick'
 gem 'kaminari'
 gem 'ransack'
 gem 'devise'
+gem 'cloudinary'
+gem 'fog'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
