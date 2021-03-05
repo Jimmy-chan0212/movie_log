@@ -10,6 +10,11 @@
           release: #{@work.release}
           %br
           main cast: #{@work.main_cast}
+
+        -if @work.tags.present?
+          -@work.tags.each do |tag|
+            =link_to tag.name, tag_path(tag), class: 'badge badge-secondary'
+
   .site-section.pb-0
     .container
       .row.align-items-stretch

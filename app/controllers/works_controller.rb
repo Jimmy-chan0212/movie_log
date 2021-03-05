@@ -45,7 +45,14 @@ class WorksController < ApplicationController
   private
 
   def work_params
-    params[:work].permit!
+    params[:work].permit(
+    :title,
+    :director_id,
+    :release,
+    :main_cast,
+    :description,
+    :image,
+    tag_ids: [])
   end
 
   def set_work
